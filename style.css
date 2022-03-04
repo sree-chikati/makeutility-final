@@ -1,0 +1,183 @@
+/* ---- IMPORTS ---- */ 
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display&family=Poppins:wght@200&display=swap');
+/* 
+font-family: 'Playfair Display', serif;
+font-family: 'Poppins', sans-serif;
+*/
+
+body {
+    overflow-x: hidden;
+    background: white;
+  }
+  
+  h1 {
+    font-family: 'Playfair Display', serif!important;
+    text-transform: uppercase;
+    color: black!important;
+  }
+  
+  h5, h4{
+      font-family: 'Poppins', sans-serif;
+      font-size: 18px !important;
+      color: black!important;
+  }
+  
+  p{
+      color: black!important;
+  }
+  
+  .btn-primary{
+    box-shadow: none;
+    padding: 8px 25px;
+    border: none;
+    border-radius: 20px;
+    background-image: linear-gradient(to right, #54ffac, #54a7ff);
+    color: black;
+  }
+  
+  .title{
+      color: black!important;
+  }
+  
+  .title::after{
+    content: '';
+    background-color: #DB592A;
+    height: 5px;
+    width: 200px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 40px;
+    display: block;
+    transform: translateY(8px);
+  }
+  
+  /*===== MAIN CONTENT =====*/
+  /*------ Banner Section ------*/
+  .banner{
+      background-image: linear-gradient( #ffffff, #DB592A);
+      color: white;
+      padding: 140px 0;
+  }
+  
+  .banner h1{
+      color: white;
+      font-size: 3rem;
+  }
+  
+  .banner h4{
+      color: white;
+  }
+  
+  .price {
+    padding: 1rem 0 0 0;
+  }
+
+  /*============= FOOTER =============*/
+  footer{
+      background-color: #DB592A;
+      color: white;
+      width: 100%;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 1rem;
+    }
+    
+    footer h3{
+        color: white;
+        font-size: 15px;
+        text-transform: uppercase;
+    }
+    
+    footer p{
+        padding: 0.5rem;
+        text-transform: uppercase;
+    }
+    
+    footer span{
+        color:white;;
+    }
+    .github{
+      color: white;
+      text-decoration: none;
+      padding: 1rem 1rem 0 1rem;
+    }
+    
+    .github:hover{
+      color: white;
+    }
+    
+    
+    /*============= MEDIA QUERIES =============*/
+    
+    /* Devices under 1199px (xl) */
+    @media (max-width: 1199.98px) {
+      .waves {
+        height: 100px;
+        min-height: 100px;
+      }
+    }
+    /* Devices under 992px (lg) */
+    @media (max-width: 991.98px) {
+      .waves {
+        height:40px;
+        min-height:40px;
+      }
+    }
+    
+    /*============ BOOTSTRAP BREAK POINTS:
+      
+      Extra small (xs) devices (portrait phones, less than 576px)
+      No media query since this is the default in Bootstrap
+      
+      Small (sm) devices (landscape phones, 576px and up)
+      @media (min-width: 576px) { ... }
+      
+      Medium (md) devices (tablets, 768px and up)
+      @media (min-width: 768px) { ... }
+      
+      Large (lg) devices (desktops, 992px and up)
+      @media (min-width: 992px) { ... }
+      
+      Extra (xl) large devices (large desktops, 1200px and up)
+      @media (min-width: 1200px) { ... }
+      
+      =============*/
+    
+    /*-- Bootstrap Mobile Gutter Fix --*/
+    .row,
+    .container-fluid {
+      margin-left: 0px !important;
+      margin-right: 0px !important;
+    }
+    
+    /*-- Fixed Background Image --*/
+    .fixed-background {
+      position: relative;
+      width: 100%;
+      z-index: 1000 !important;
+    }
+    .fixed-wrap {
+      clip: rect(0, auto, auto, 0);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -999 !important;
+    }
+    .fixed {
+      z-index: -999 !important;
+      display: block;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center center;
+      -webkit-transform: translateZ(0);
+      transform: translateZ(0);
+      will-change: transform;
+    }

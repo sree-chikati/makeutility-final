@@ -1,20 +1,87 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html>
+
 <head>
   <meta charset="utf-8">
-  <title>Untitled Custom SSG</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Etsy Necklaces</title>
+
+  <!-- BOOTSTRAP STYLESHEET LINK-->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <!-- BOOTSTRAP THEME -->
+  <link rel="stylesheet" href="https://bootswatch.com/4/lux/bootstrap.min.css">
+  <!-- CUSTOM STYLES -->
+  <link rel="stylesheet" href="style.css">
+  <!-- AOS CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
 </head>
+
 <body>
 
-<h1>Necklaces!</h1>
+<!-- MAIN CONTENT -->
+<section class="banner text-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h1 >Necklaces!</h1>
+                <h4 class="py-4">Websrape of all of Etsy latest necklaces in one place</h4>
+                <!-- All Latest Necklaces -->
+                <div class="new">
+                    <h2 class="title">Latest Necklaces</h2>
+                    <div class="container">
+                        <div class="row">
+                            {{ range . }}
+                            <div class="col-md-4">
+                                <div class="card p-2 m-2">
+                                    <img src={{ .Image }} class="card-img-top">
+                                    <div class="card-body">
+                                        <h5>{{ .Name }}</h5>
+                                        <h5 class="price">${{ .OriginalPrice }}</h5>
+                                    </div>
+                                </div>
+                            </div>
+                            {{ end }}
+                        </div>
+                    </div>    
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
-{{ range . }}
-  <div>
-  <p>Item name: {{ .Name }}</p>
-  <p>Price ${{ .OriginalPrice }}</p>
-  <img src={{ .Image }}>
-  </div>
-{{ end }}
+  <!--FOOTER-->  
+  <footer>
+    <h3>GO FINAL by <span>Sree Chikati</span></h3>
+    <p> Source Code:</p>
+    <div id = "find">
+        <a href="https://github.com/sree-chikati/makeutility-final.git" class="github" title="Github">
+            <i class="fa fa-github fa-3x"></i>
+        </a>
+    </div>
+  </footer>
+  <!-- End Footer -->
 
+
+
+<!-- AOS EFFECTS INITIALIZATION -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<script>
+    AOS.init({
+        disable: false, // accepts following values: 'phone', 'tablet', 'mobile', boolean, expression or function
+        duration: 750,
+        offset: 120,
+        easing: 'ease-in-out'
+    });
+</script>
+<!-- SCRIPT FOR FONT AWESOME -->
+<script src="https://kit.fontawesome.com/2cf12949d8.js" crossorigin="anonymous"></script>
+<!-- jQuery first-->
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<!--Popper.js-->
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<!--Bootstrap JS-->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 </body>
 </html>
