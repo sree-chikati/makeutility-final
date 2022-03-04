@@ -1,4 +1,4 @@
-module github.com/sree-chikati/makescraper
+module github.com/sree-chikati/makeutility-final
 
 go 1.13
 

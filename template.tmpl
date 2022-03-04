@@ -5,6 +5,16 @@
   <title>Untitled Custom SSG</title>
 </head>
 <body>
-  <p>{{ .NecklaceData }}</p>
+
+<h1>Necklaces!</h1>
+
+{{ range . }}
+  <div>
+  <p>Item name: {{ .Name }}</p>
+  <p>Price ${{ .OriginalPrice }}</p>
+  <img src={{ .Image }}>
+  </div>
+{{ end }}
+
 </body>
 </html>

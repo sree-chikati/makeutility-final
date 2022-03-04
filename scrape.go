@@ -2,8 +2,10 @@ package main
 
 import (
 	"fmt"
+	"os"
 	"strconv"
 	"strings"
+	"text/template"
 
 	"github.com/gocolly/colly"
 )
@@ -15,9 +17,15 @@ type Necklace struct {
 }
 
 // Make template from data
-func makeHTML(names []Necklace) {
-	// SSF STUFF
-	println("Hello")
+func makeHTML(necklaces []Necklace) {
+
+	template, _ := template.ParseFiles("template.tmpl")
+	newHTML, _ := os.Create("necklaces.html")
+	err := template.Execute(newHTML, necklaces)
+
+	if err != nil {
+		panic(err)
+	}
 }
 
 func main() {
@@ -54,6 +62,7 @@ func main() {
 	c.Visit("https://www.etsy.com/c/jewelry/necklaces/pendants?ref=catnav-10855")
 
 	for i := 0; i < len(necklaceNames); i++ {
+		// fmt.Println(necklaceImages[i])
 		necklaceData := Necklace{Name: necklaceNames[i], OriginalPrice: necklacePrices[i], Image: necklaceImages[i]}
 		products = append(products, necklaceData)
 	}
