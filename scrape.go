@@ -1,9 +1,7 @@
 package main
 
 import (
-	"encoding/json"
 	"fmt"
-	"io/ioutil"
 	"strconv"
 	"strings"
 
@@ -18,8 +16,8 @@ type Necklace struct {
 
 // Make template from data
 func makeHTML(names []Necklace) {
-	json, _ := json.MarshalIndent(names, "", " ")
-	_ = ioutil.WriteFile("output.json", json, 0644)
+	// SSF STUFF
+	println("Hello")
 }
 
 func main() {
