@@ -31,7 +31,4 @@ func main() {
 	// Start scraping on https://hackerspaces.org
 	c.Visit("https://store.steampowered.com/explore/new/")
 
-	for i := 0; i < len(namesData); i++ {
-		println(namesData[i].Name)
-	}
 }
