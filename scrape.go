@@ -4,32 +4,47 @@ import (
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
+	"strconv"
+	"strings"
 
 	"github.com/gocolly/colly"
 )
 
-type NewReleases struct {
-	Name string
+type Necklace struct {
+	Name          string
+	OriginalPrice float64
+	Image         string
 }
 
-// function makes a file with the NewReleased names
-func storeNames(names []NewReleases) {
+// Make template from data
+func makeHTML(names []Necklace) {
 	json, _ := json.MarshalIndent(names, "", " ")
 	_ = ioutil.WriteFile("output.json", json, 0644)
 }
 
 func main() {
+	products := []Necklace{}
+	var necklaceNames []string
+	var necklacePrices []float64
+	var necklaceImages []string
 
-	// stores an array of new release structs
-	namesData := make([]NewReleases, 0)
 	c := colly.NewCollector()
 
-	c.OnHTML("div.tab_item_name", func(e *colly.HTMLElement) {
-		// creates NewRelease struct with e.Text for Name attribute
-		new_release := NewReleases{Name: e.Text}
+	// Get necklace names
+	c.OnHTML("h3.v2-listing-card__title", func(e *colly.HTMLElement) {
+		necklaceNames = append(necklaceNames, strings.TrimSpace(e.Text))
+	})
 
-		// appends to the array namesData
-		namesData = append(namesData, new_release)
+	// Get necklace prices
+	c.OnHTML("span.currency-value", func(e *colly.HTMLElement) {
+		pricefloat, _ := strconv.ParseFloat(e.Text, 32)
+		necklacePrices = append(necklacePrices, pricefloat)
+	})
+
+	// Get necklace image urls
+	c.OnHTML("div.v2-listing-card", func(e *colly.HTMLElement) {
+		imgSrc := e.ChildAttr("img", "src")
+		necklaceImages = append(necklaceImages, imgSrc)
 	})
 
 	// informs you it's visiting the URL
@@ -38,8 +53,13 @@ func main() {
 	})
 
 	// visits given URL
-	c.Visit("https://store.steampowered.com/explore/new/")
+	c.Visit("https://www.etsy.com/c/jewelry/necklaces/pendants?ref=catnav-10855")
 
-	// calls storeNames with array of NewReleases
-	storeNames(namesData)
+	for i := 0; i < len(necklaceNames); i++ {
+		necklaceData := Necklace{Name: necklaceNames[i], OriginalPrice: necklacePrices[i], Image: necklaceImages[i]}
+		products = append(products, necklaceData)
+	}
+
+	// Pass data to HTML generator
+	makeHTML(products)
 }
