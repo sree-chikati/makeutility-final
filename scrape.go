@@ -15,12 +15,12 @@ type NewReleases struct {
 func main() {
 	// Instantiate default collector
 	namesData := make([]NewReleases, 0)
-	var names []string
 	c := colly.NewCollector()
 
 	// On every a element which has href attribute call callback
 	c.OnHTML("div.tab_item_name", func(e *colly.HTMLElement) {
-		names := append(names, e.Text)
+		new_release := NewReleases{Name: e.Text}
+		namesData = append(namesData, new_release)
 	})
 
 	// Before making a request print "Visiting ..."
@@ -30,7 +30,8 @@ func main() {
 
 	// Start scraping on https://hackerspaces.org
 	c.Visit("https://store.steampowered.com/explore/new/")
-	for i := 0; i < len(names); i++ {
-		namesData := NewReleases{Name: names[i]}
+
+	for i := 0; i < len(namesData); i++ {
+		println(namesData[i].Name)
 	}
 }
